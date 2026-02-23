@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>The M O O N</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/14-512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ВХОД -->
+    <div class="container" id="login">
+        <h2 class="center-text">Введи пароль</h2>
+        <input type="password" id="password" placeholder="Пароль">
+        <button onclick="checkPassword()">Войти</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <!-- ПРИВЕТСТВИЕ -->
+    <div id="welcomeBox" class="welcome-box hidden">
+        <div class="welcome">
+            <span>Добро пожаловать, моя госпожа,</span><br>
+            <span class="name">Екатерина!</span>
+        </div>
+    </div>
+
+    <!-- БЕЛЫЙ КОНТЕЙНЕР -->
+    <div id="contentBox" class="content-box hidden">
+
+        <div id="love1" class="text hidden">
+            С днём всех влюблённых 🥰
+        </div>
+
+        <div id="love2" class="text small hidden">
+            Я очень рад, что ты моя вторая половинка! 🤗
+        </div>
+
+        <div id="media" class="hidden">
+            <video src="vid/IMG_29009.mp4" autoplay muted loop playsinline preload="auto"></video>
+        </div>
+
+    </div>
+
+    <!-- Кнопка под контейнером -->
+    <a href="https://lenta.com/gc/h5ig9Mo8hsc8wg3LrMvvYf/"
+       class="gift-btn hidden"
+       id="goBtn">
+        👉 Это тебе! 👈
+    </a>
+
+</div>
+
+<script>
+const PASSWORD = "2589";
+
+window.onload = () => {
+    if (localStorage.getItem("auth") === "false") {
+        startSequence();
+    }
+};
+
+function checkPassword() {
+    const pass = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (pass === PASSWORD) {
+        localStorage.setItem("auth", "true");
+        startSequence();
+    } else {
+        error.textContent = "Неправильный пароль";
+    }
+}
+
+function startSequence() {
+    const login = document.getElementById("login");
+    const welcomeBox = document.getElementById("welcomeBox");
+    const box = document.getElementById("contentBox");
+    const love1 = document.getElementById("love1");
+    const love2 = document.getElementById("love2");
+    const media = document.getElementById("media");
+    const btn = document.getElementById("goBtn");
+
+    login.style.display = "none";
+
+    welcomeBox.classList.remove("hidden");
+    setTimeout(() => welcomeBox.classList.add("fade-out"), 2800);
+
+    setTimeout(() => {
+        welcomeBox.classList.add("hidden");
+        box.classList.remove("hidden");
+
+        love1.classList.remove("hidden");
+        love1.classList.add("fade-in");
+    }, 3800);
+
+    setTimeout(() => {
+        love2.classList.remove("hidden");
+        love2.classList.add("fade-in");
+    }, 6000);
+
+    setTimeout(() => {
+        media.classList.remove("hidden");
+        media.classList.add("fade-in");
+    }, 8200);
+
+    setTimeout(() => {
+        btn.classList.remove("hidden");
+        btn.classList.add("fade-in");
+    }, 10500);
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
